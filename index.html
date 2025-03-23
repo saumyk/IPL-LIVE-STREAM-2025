@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPL Live - By Soumya</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px 0;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+      box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.3);
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .header:hover {
+      transform: scale(1.02);
+    }
+
+    .video-container {
+      width: 90%;
+      max-width: 900px;
+      margin-top: 100px;
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      animation: neon-glow 2s infinite alternate ease-in-out;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      background: #000;
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.7);
+    }
+
+    @keyframes neon-glow {
+      0% {
+        box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.4), 0px 0px 30px rgba(0, 153, 255, 0.5);
+        border-color: rgba(0, 153, 255, 0.8);
+      }
+      50% {
+        box-shadow: 0px 0px 50px rgba(255, 0, 153, 0.8), 0px 0px 80px rgba(0, 255, 204, 0.9);
+        border-color: rgba(255, 0, 153, 0.9);
+      }
+      100% {
+        box-shadow: 0px 0px 25px rgba(0, 255, 204, 0.6), 0px 0px 60px rgba(0, 153, 255, 0.8);
+        border-color: rgba(0, 255, 204, 0.9);
+      }
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: white;
+      font-weight: 600;
+      transition: 0.3s ease-in-out;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .footer a:hover {
+      color: #ff4081;
+      text-shadow: 0px 0px 20px rgba(255, 64, 129, 1);
+    }
+
+    @media (max-width: 768px) {
+      .video-container {
+        width: 95%;
+      }
+      .header {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">IPL Live - By Soumya</div>
+
+  <div class="video-container">
+    <video id="video" controls autoplay muted playsinline></video>
+  </div>
+
+  <div class="footer">
+    Made with ❤️ by <a href="https://github.com/SoumyaEXE" target="_blank">Soumya</a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const video = document.getElementById('video');
+      const streamURL = "https://v18tataplaysyndication.akamaized.net/bpk-tv/Sports18_1_HD_voot_MOB/output03/index.m3u8?hdnea=exp=1742747374~acl=/*~hmac=95a012999ef5ee39b4047125db76e805af0b253814f48a2de1e04c1b53255ca1";
+
+      if (Hls.isSupported()) {
+        let hls = new Hls();
+        hls.loadSource(streamURL);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+          video.play().catch(error => console.log("Autoplay Blocked: ", error));
+        });
+
+        hls.on(Hls.Events.ERROR, function (event, data) {
+          if (data.fatal) {
+            switch (data.type) {
+              case Hls.ErrorTypes.NETWORK_ERROR:
+                console.log("Network error, trying to recover...");
+                hls.startLoad();
+                break;
+              case Hls.ErrorTypes.MEDIA_ERROR:
+                console.log("Media error, trying to recover...");
+                hls.recoverMediaError();
+                break;
+              default:
+                console.log("Fatal error encountered: ", data);
+                hls.destroy();
+                break;
+            }
+          }
+        });
+
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = streamURL;
+        video.addEventListener('loadedmetadata', function () {
+          video.play().catch(error => console.log("Autoplay Blocked: ", error));
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
