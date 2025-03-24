@@ -33,95 +33,113 @@
       top: 0;
       width: 100%;
       background: rgba(255, 255, 255, 0.1);
-      padding: 15px 0;
-      font-size: 2rem;
+      padding: 12px 0;
+      font-size: 1.8rem;
       font-weight: 700;
       color: white;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
       box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
       z-index: 100;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(8px);
     }
 
     .video-container {
       width: 90%;
       max-width: 900px;
-      margin-top: 100px;
+      margin-top: 80px;
       position: relative;
-      border-radius: 15px;
+      border-radius: 12px;
       overflow: hidden;
-      animation: soft-glow 2s infinite alternate ease-in-out;
     }
 
     video {
       width: 100%;
       height: auto;
-      border-radius: 15px;
+      border-radius: 12px;
       background: #000;
       border: 2px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+      box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.5);
     }
 
-    @keyframes soft-glow {
-      0% {
-        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3), 0px 0px 20px rgba(0, 153, 255, 0.4);
-      }
-      50% {
-        box-shadow: 0px 0px 30px rgba(255, 0, 153, 0.5), 0px 0px 50px rgba(0, 255, 204, 0.6);
-      }
-      100% {
-        box-shadow: 0px 0px 15px rgba(0, 255, 204, 0.4), 0px 0px 30px rgba(0, 153, 255, 0.5);
-      }
+    /* Centered Play Button */
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.7);
+      border: 2px solid white;
+      color: white;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      font-size: 1.8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    /* VIDEO CONTROLS */
+    .play-btn:hover {
+      background: rgba(255, 64, 129, 0.8);
+      box-shadow: 0px 0px 15px rgba(255, 64, 129, 1);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Bottom Bar */
     .controls {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      padding: 10px;
-      background: rgba(0, 0, 0, 0.7);
+      padding: 6px 12px;
+      background: rgba(0, 0, 0, 0.6);
       position: absolute;
       bottom: 0;
       left: 0;
-      border-radius: 0 0 15px 15px;
+      border-radius: 0 0 12px 12px;
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.3s, transform 0.3s;
+      transform: translateY(10px);
     }
 
     .video-container:hover .controls {
       opacity: 1;
+      transform: translateY(0);
     }
 
     .btn {
       background: none;
       border: none;
       color: white;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: 0.3s;
     }
 
     .btn:hover {
       color: #ff4081;
-      text-shadow: 0px 0px 20px rgba(255, 64, 129, 1);
+      text-shadow: 0px 0px 10px rgba(255, 64, 129, 1);
     }
 
     .live-indicator {
       background: red;
       color: white;
-      font-size: 1rem;
-      padding: 5px 10px;
-      border-radius: 5px;
+      font-size: 0.9rem;
+      padding: 4px 10px;
+      border-radius: 4px;
       font-weight: bold;
     }
 
     .footer {
       margin-top: 20px;
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: white;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .footer a {
@@ -133,7 +151,7 @@
 
     .footer a:hover {
       color: #ff4081;
-      text-shadow: 0px 0px 20px rgba(255, 64, 129, 1);
+      text-shadow: 0px 0px 15px rgba(255, 64, 129, 1);
     }
 
     @media (max-width: 768px) {
@@ -142,6 +160,21 @@
       }
       .header {
         font-size: 1.5rem;
+      }
+      .play-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+      .controls {
+        padding: 5px 10px;
+      }
+      .btn {
+        font-size: 1rem;
+      }
+      .live-indicator {
+        font-size: 0.8rem;
+        padding: 3px 6px;
       }
     }
   </style>
@@ -153,9 +186,11 @@
   <div class="video-container">
     <video id="video" playsinline></video>
 
-    <!-- VIDEO CONTROLS -->
+    <!-- Play Button -->
+    <button id="playPause" class="play-btn">▶</button>
+
+    <!-- Bottom Controls -->
     <div class="controls">
-      <button id="playPause" class="btn">▶</button>
       <span class="live-indicator">LIVE</span>
       <button id="fullscreen" class="btn">⛶</button>
     </div>
@@ -177,46 +212,22 @@
         hls.loadSource(streamURL);
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED, function () {
-          hls.levels.forEach((level, index) => {
-            if (level.height >= 720) { // Ensure HD is selected
-              hls.currentLevel = index;
-            }
-          });
-          video.play();
+          let highestHDLevel = hls.levels.findIndex(level => level.height >= 1080);
+          if (highestHDLevel !== -1) {
+            hls.currentLevel = highestHDLevel;
+          }
         });
       } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = streamURL;
-        video.play();
       }
 
       playPauseBtn.addEventListener("click", () => {
-        if (video.paused) {
-          video.play();
-          playPauseBtn.textContent = "❚❚";
-        } else {
-          video.pause();
-          playPauseBtn.textContent = "▶";
-        }
+        video.play();
+        playPauseBtn.classList.add("hidden");
       });
 
       fullscreenBtn.addEventListener("click", () => {
-        if (video.requestFullscreen) {
-          video.requestFullscreen();
-        } else if (video.mozRequestFullScreen) {
-          video.mozRequestFullScreen();
-        } else if (video.webkitRequestFullscreen) {
-          video.webkitRequestFullscreen();
-        } else if (video.msRequestFullscreen) {
-          video.msRequestFullscreen();
-        }
-      });
-
-      document.addEventListener("keydown", (event) => {
-        if (event.code === "Space") {
-          playPauseBtn.click();
-        } else if (event.key === "f") {
-          fullscreenBtn.click();
-        }
+        if (video.requestFullscreen) video.requestFullscreen();
       });
     });
   </script>
