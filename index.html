@@ -37,15 +37,10 @@
       font-size: 2rem;
       font-weight: 700;
       color: white;
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
-      box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.3);
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+      box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
       z-index: 100;
       backdrop-filter: blur(10px);
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .header:hover {
-      transform: scale(1.02);
     }
 
     .video-container {
@@ -55,7 +50,7 @@
       position: relative;
       border-radius: 15px;
       overflow: hidden;
-      animation: neon-glow 2s infinite alternate ease-in-out;
+      animation: soft-glow 2s infinite alternate ease-in-out;
     }
 
     video {
@@ -63,23 +58,63 @@
       height: auto;
       border-radius: 15px;
       background: #000;
-      border: 3px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.7);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
     }
 
-    @keyframes neon-glow {
+    @keyframes soft-glow {
       0% {
-        box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.4), 0px 0px 30px rgba(0, 153, 255, 0.5);
-        border-color: rgba(0, 153, 255, 0.8);
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3), 0px 0px 20px rgba(0, 153, 255, 0.4);
       }
       50% {
-        box-shadow: 0px 0px 50px rgba(255, 0, 153, 0.8), 0px 0px 80px rgba(0, 255, 204, 0.9);
-        border-color: rgba(255, 0, 153, 0.9);
+        box-shadow: 0px 0px 30px rgba(255, 0, 153, 0.5), 0px 0px 50px rgba(0, 255, 204, 0.6);
       }
       100% {
-        box-shadow: 0px 0px 25px rgba(0, 255, 204, 0.6), 0px 0px 60px rgba(0, 153, 255, 0.8);
-        border-color: rgba(0, 255, 204, 0.9);
+        box-shadow: 0px 0px 15px rgba(0, 255, 204, 0.4), 0px 0px 30px rgba(0, 153, 255, 0.5);
       }
+    }
+
+    /* VIDEO CONTROLS */
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 0 0 15px 15px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .video-container:hover .controls {
+      opacity: 1;
+    }
+
+    .btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      color: #ff4081;
+      text-shadow: 0px 0px 20px rgba(255, 64, 129, 1);
+    }
+
+    .live-indicator {
+      background: red;
+      color: white;
+      font-size: 1rem;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
     }
 
     .footer {
@@ -87,7 +122,6 @@
       font-size: 1.2rem;
       color: white;
       font-weight: 600;
-      transition: 0.3s ease-in-out;
     }
 
     .footer a {
@@ -117,7 +151,14 @@
   <div class="header">IPL Live - By Soumya</div>
 
   <div class="video-container">
-    <video id="video" controls autoplay muted playsinline></video>
+    <video id="video" playsinline></video>
+
+    <!-- VIDEO CONTROLS -->
+    <div class="controls">
+      <button id="playPause" class="btn">▶</button>
+      <span class="live-indicator">LIVE</span>
+      <button id="fullscreen" class="btn">⛶</button>
+    </div>
   </div>
 
   <div class="footer">
@@ -127,6 +168,8 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const video = document.getElementById('video');
+      const playPauseBtn = document.getElementById('playPause');
+      const fullscreenBtn = document.getElementById('fullscreen');
       const streamURL = "https://live.tsports.com/mobile_hls/tsports_live_2/playlist.m3u8";
 
       if (Hls.isSupported()) {
@@ -134,34 +177,47 @@
         hls.loadSource(streamURL);
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED, function () {
-          video.play().catch(error => console.log("Autoplay Blocked: ", error));
-        });
-
-        hls.on(Hls.Events.ERROR, function (event, data) {
-          if (data.fatal) {
-            switch (data.type) {
-              case Hls.ErrorTypes.NETWORK_ERROR:
-                console.log("Network error, trying to recover...");
-                hls.startLoad();
-                break;
-              case Hls.ErrorTypes.MEDIA_ERROR:
-                console.log("Media error, trying to recover...");
-                hls.recoverMediaError();
-                break;
-              default:
-                console.log("Fatal error encountered: ", data);
-                hls.destroy();
-                break;
+          hls.levels.forEach((level, index) => {
+            if (level.height >= 720) { // Ensure HD is selected
+              hls.currentLevel = index;
             }
-          }
+          });
+          video.play();
         });
-
       } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = streamURL;
-        video.addEventListener('loadedmetadata', function () {
-          video.play().catch(error => console.log("Autoplay Blocked: ", error));
-        });
+        video.play();
       }
+
+      playPauseBtn.addEventListener("click", () => {
+        if (video.paused) {
+          video.play();
+          playPauseBtn.textContent = "❚❚";
+        } else {
+          video.pause();
+          playPauseBtn.textContent = "▶";
+        }
+      });
+
+      fullscreenBtn.addEventListener("click", () => {
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) {
+          video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) {
+          video.msRequestFullscreen();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.code === "Space") {
+          playPauseBtn.click();
+        } else if (event.key === "f") {
+          fullscreenBtn.click();
+        }
+      });
     });
   </script>
 
