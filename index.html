@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPL Live 2025 - Multi-Language Streams</title>
+    <title>🎥IPL Live 2025 - Multi-Language Streams By Soumya🚨</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -14,7 +14,12 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZKL0GYFPH"></script>
     <script>
-     var _$_c1fa=["dataLayer","push","js","config","G-TZKL0GYFPH"];window[_$_c1fa[0]]= window[_$_c1fa[0]]|| [];function gtag(){dataLayer[_$_c1fa[1]](arguments)}gtag(_$_c1fa[2], new Date());gtag(_$_c1fa[3],_$_c1fa[4])</script>
+     var _$_9681=["dataLayer","push","js","config","G-TZKL0GYFPH"];
+window[_$_9681[0]]= window[_$_9681[0]]|| [];function gtag()
+{
+	dataLayer[_$_9681[1]](arguments)
+}
+gtag(_$_9681[2], new Date());gtag(_$_9681[3],_$_9681[4])</script>
     <style>
         * {
             box-sizing: border-box;
@@ -162,7 +167,7 @@
             margin: 0;
             padding: 0;
             object-fit: fill;
-            position: relative; /* Changed from absolute to relative */
+            position: relative;
         }
         .loading {
             position: absolute;
@@ -231,6 +236,23 @@
             padding: 0 !important;
             object-fit: fill !important;
         }
+        .custom-fullscreen {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background: #ffd60a;
+            color: #0f1419;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 5;
+            font-weight: 600;
+        }
+        .custom-fullscreen:hover {
+            background: #004170;
+            color: #ffd60a;
+        }
         @media (max-width: 992px) {
             .tab-container {
                 grid-template-columns: 1fr 1fr;
@@ -272,6 +294,10 @@
             }
             .cricket-facts {
                 font-size: 0.9rem;
+            }
+            .custom-fullscreen {
+                padding: 3px 8px;
+                font-size: .8rem;
             }
         }
     </style>
@@ -315,7 +341,8 @@
         </div>
         <div class="iframe-wrapper">
             <div class="loading" id="server3-loading">Loading stream...</div>
-            <iframe id="server3-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
+            <iframe id="server3-iframe" sandbox="allow-scripts allow-same-origin allow-fullscreen allow-presentation" allowfullscreen src="" scrolling="no"></iframe>
+            <button class="custom-fullscreen" data-iframe="server3-iframe">Fullscreen</button>
         </div>
     </div>
     <div id="server4-stream" class="stream-container">
@@ -324,7 +351,8 @@
         </div>
         <div class="iframe-wrapper">
             <div class="loading" id="server4-loading">Loading stream...</div>
-            <iframe id="server4-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
+            <iframe id="server4-iframe" sandbox="allow-scripts allow-same-origin allow-fullscreen allow-presentation" allowfullscreen src="" scrolling="no"></iframe>
+            <button class="custom-fullscreen" data-iframe="server4-iframe">Fullscreen</button>
         </div>
     </div>
     <div id="server5-stream" class="stream-container">
@@ -333,7 +361,8 @@
         </div>
         <div class="iframe-wrapper">
             <div class="loading" id="server5-loading">Loading stream...</div>
-            <iframe id="server5-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
+            <iframe id="server5-iframe" sandbox="allow-scripts allow-same-origin allow-fullscreen allow-presentation" allowfullscreen src="" scrolling="no"></iframe>
+            <button class="custom-fullscreen" data-iframe="server5-iframe">Fullscreen</button>
         </div>
     </div>
     <div id="server6-stream" class="stream-container">
@@ -342,14 +371,316 @@
         </div>
         <div class="iframe-wrapper">
             <div class="loading" id="server6-loading">Loading stream...</div>
-            <iframe id="server6-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
+            <iframe id="server6-iframe" sandbox="allow-scripts allow-same-origin allow-fullscreen allow-presentation" allowfullscreen src="" scrolling="no"></iframe>
+            <button class="custom-fullscreen" data-iframe="server6-iframe">Fullscreen</button>
         </div>
     </div>
     <div class="cricket-facts" id="cricket-facts">Some Random Cricket Facts By Soumya: Loading...</div>
     <div class="footer">Made with ❤️ by <a href="https://github.com/SoumyaEXE" target="_blank">Soumya</a></div>
 
     <script>
-       var _$_47ed=[".tab","querySelectorAll",".stream-container",".footer","querySelector","https://cdn.crichdplays.ru/embed2.php?id=starsp3","https://cdn.crichdplays.ru/embed2.php?id=starsp","https://cdn.crichdplays.ru/embed2.php?id=starsp2","https://cdn.crichdplays.ru/embed2.php?id=willow","1080p","https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_high/index.m3u8","720p","https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_medium/index.m3u8","480p","https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_low/index.m3u8","240p","https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_lowest/index.m3u8","https://live.tsports.com/mobile_hls/tsports_live_2/playlist.m3u8","IPL Live 2025","Follow Me On Instagram @f1r3w4ll","Follow Me On Twitter @iSoumyadeepDey","Follow Me On GitHub @SoumyaEXE","HOPE YOU ARE ENJOYING THE STREAM","header-text","getElementById","length","textContent","76aaed4d-4987-43e2-a105-7f28d2612ee8","d5a498c8-7596-4b93-8ab0-e0efc3345312","Score fetch error:","error","score-ticker","IPL 2025 Live Score: GT vs PBKS - 232/5 (20 ov)","catch","data","series_id","find","matchEnded","status","matchStarted","score","name",": ","inning"," - ","r","/","w"," (","o"," ov)",": Match Yet to Start","No Live IPL 2025 Match Currently","Invalid API response","then","json","&offset=0","Some Random Cricket Facts By Soumya: The shortest Test match lasted 10 balls!","Some Random Cricket Facts By Soumya: Sachin Tendulkar has scored 100 international centuries.","Some Random Cricket Facts By Soumya: The first T20I was played in 2005 between Australia and New Zealand.","Some Random Cricket Facts By Soumya: A cricket ball weighs between 155.9 and 163 grams.","Some Random Cricket Facts By Soumya: The highest team total in an ODI is 481/6 by England.","cricket-facts","Soumya","includes","pause","forEach","video","function","getState","english-player","playing","entries","src","","iframe","loading","replace","display","style","none","block","#hindi-player","play-large","play","progress","current-time","mute","volume","settings","fullscreen","quality","isSupported","file","loadSource","hindi-player","attachMedia","source","video/mp4","title","map","MANIFEST_PARSED","Events","hindi-loading","on","ERROR","fatal","application/vnd.apple.mpegurl","canPlayType","JWPlayer library not loaded.","100%","html5","setup","ready","english-loading","JWPlayer error:","message","log","english-banner","levels","Available quality levels:","click","active","remove","classList","add","-tab","-stream","id","english-tab","hindi-tab","Hindi play error:","-iframe","addEventListener","DOMContentLoaded",".tab.active","Initial Hindi play error:","beforeunload","explicitOriginalTarget","activeElement","tagName","A","contains","currentTarget","preventDefault","returnValue"];const tabs=document[_$_47ed[1]](_$_47ed[0]);const streams=document[_$_47ed[1]](_$_47ed[2]);const footer=document[_$_47ed[4]](_$_47ed[3]);const iframeSources={"server3-iframe":_$_47ed[5],"server4-iframe":_$_47ed[6],"server5-iframe":_$_47ed[7],"server6-iframe":_$_47ed[8]};const hindiSources=[{title:_$_47ed[9],file:_$_47ed[10]},{title:_$_47ed[11],file:_$_47ed[12]},{title:_$_47ed[13],file:_$_47ed[14]},{title:_$_47ed[15],file:_$_47ed[16]}];const englishSource=_$_47ed[17];const headerMessages=[_$_47ed[18],_$_47ed[19],_$_47ed[20],_$_47ed[21],_$_47ed[22]];let headerIndex=0;const headerText=document[_$_47ed[24]](_$_47ed[23]);setInterval(()=>{headerIndex= (headerIndex+ 1)% headerMessages[_$_47ed[25]];headerText[_$_47ed[26]]= headerMessages[headerIndex]},3000);const apiKey=_$_47ed[27];const iplSeriesId=_$_47ed[28];function updateScoreTicker(){fetch(("https://api.cricapi.com/v1/currentMatches?apikey="+apiKey+_$_47ed[56]))[_$_47ed[54]]((r)=>{return r[_$_47ed[55]]()})[_$_47ed[54]]((u)=>{if(u&& u[_$_47ed[34]]){const v=u[_$_47ed[34]][_$_47ed[36]]((y)=>{return y[_$_47ed[35]]=== iplSeriesId});if(v){if(v[_$_47ed[37]]){document[_$_47ed[24]](_$_47ed[31])[_$_47ed[26]]= v[_$_47ed[38]]}else {if(v[_$_47ed[39]]){const w=v[_$_47ed[40]][v[_$_47ed[40]][_$_47ed[25]]- 1];const x=(""+v[_$_47ed[41]]+_$_47ed[42]+w[_$_47ed[43]]+_$_47ed[44]+w[_$_47ed[45]]+_$_47ed[46]+w[_$_47ed[47]]+_$_47ed[48]+w[_$_47ed[49]]+_$_47ed[50]);document[_$_47ed[24]](_$_47ed[31])[_$_47ed[26]]= x}else {document[_$_47ed[24]](_$_47ed[31])[_$_47ed[26]]= (""+v[_$_47ed[41]]+_$_47ed[51])}}}else {document[_$_47ed[24]](_$_47ed[31])[_$_47ed[26]]= _$_47ed[52]}}else {throw  new Error(_$_47ed[53])}})[_$_47ed[33]]((z)=>{console[_$_47ed[30]](_$_47ed[29],z);document[_$_47ed[24]](_$_47ed[31])[_$_47ed[26]]= _$_47ed[32]})}updateScoreTicker();setInterval(updateScoreTicker,30000);const cricketFacts=[_$_47ed[57],_$_47ed[58],_$_47ed[59],_$_47ed[60],_$_47ed[61]];let factIndex=0;const factsElement=document[_$_47ed[24]](_$_47ed[62]);function updateCricketFacts(){factsElement[_$_47ed[26]]= cricketFacts[factIndex];factIndex= (factIndex+ 1)% cricketFacts[_$_47ed[25]]}updateCricketFacts();setInterval(updateCricketFacts,5000);function stopAllStreams(){if(!footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){return};document[_$_47ed[1]](_$_47ed[67])[_$_47ed[66]]((q)=>{return q[_$_47ed[65]]()});if( typeof jwplayer=== _$_47ed[68]&& jwplayer(_$_47ed[70])[_$_47ed[69]]()=== _$_47ed[71]){jwplayer(_$_47ed[70])[_$_47ed[65]]()};for(const [m] of Object[_$_47ed[72]](iframeSources)){const n=document[_$_47ed[24]](m);if(n&& footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){n[_$_47ed[73]]= _$_47ed[74];const o=document[_$_47ed[24]](m[_$_47ed[77]](_$_47ed[75],_$_47ed[76]));if(o){o[_$_47ed[79]][_$_47ed[78]]= _$_47ed[80]}}}}function loadIframeStream(m,p){if(!footer||  !footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){return};const n=document[_$_47ed[24]](m);const o=document[_$_47ed[24]](m[_$_47ed[77]](_$_47ed[75],_$_47ed[76]));if(!n||  !o){return};o[_$_47ed[79]][_$_47ed[78]]= _$_47ed[81];n[_$_47ed[73]]= p;setTimeout(()=>{return o[_$_47ed[79]][_$_47ed[78]]= _$_47ed[80]},2000)}const hindiPlayer= new Plyr(_$_47ed[82],{controls:[_$_47ed[83],_$_47ed[84],_$_47ed[85],_$_47ed[86],_$_47ed[87],_$_47ed[88],_$_47ed[89],_$_47ed[90]],settings:[_$_47ed[91]],quality:{default:720,options:[1080,720,480,240]}});if(Hls[_$_47ed[92]]()){const hindiHls= new Hls();hindiHls[_$_47ed[94]](hindiSources[1][_$_47ed[93]]);hindiHls[_$_47ed[96]](document[_$_47ed[24]](_$_47ed[95]));hindiPlayer[_$_47ed[97]]= {type:_$_47ed[67],sources:hindiSources[_$_47ed[100]]((a)=>{return ({src:a[_$_47ed[93]],type:_$_47ed[98],size:parseInt(a[_$_47ed[99]])})})};hindiHls[_$_47ed[104]](Hls[_$_47ed[102]][_$_47ed[101]],()=>{document[_$_47ed[24]](_$_47ed[103])[_$_47ed[79]][_$_47ed[78]]= _$_47ed[80]});hindiHls[_$_47ed[104]](Hls[_$_47ed[102]][_$_47ed[105]],(c,b)=>{if(b[_$_47ed[106]]){document[_$_47ed[24]](_$_47ed[103])[_$_47ed[79]][_$_47ed[78]]= _$_47ed[81]}})}else {if(document[_$_47ed[24]](_$_47ed[95])[_$_47ed[108]](_$_47ed[107])){document[_$_47ed[24]](_$_47ed[95])[_$_47ed[73]]= hindiSources[1][_$_47ed[93]];document[_$_47ed[24]](_$_47ed[103])[_$_47ed[79]][_$_47ed[78]]= _$_47ed[80]}};let englishPlayer;function initEnglishPlayer(){if( typeof jwplayer!== _$_47ed[68]){console[_$_47ed[30]](_$_47ed[109]);return};englishPlayer= jwplayer(_$_47ed[70])[_$_47ed[112]]({file:englishSource,autostart:false,width:_$_47ed[110],height:_$_47ed[110],controls:true,displaytitle:false,primary:_$_47ed[111],hlsjsConfig:{maxBufferLength:30,maxMaxBufferLength:60}});englishPlayer[_$_47ed[104]](_$_47ed[113],()=>{document[_$_47ed[24]](_$_47ed[114])[_$_47ed[79]][_$_47ed[78]]= _$_47ed[80]});englishPlayer[_$_47ed[104]](_$_47ed[30],(c)=>{console[_$_47ed[117]](_$_47ed[115],c[_$_47ed[116]]);document[_$_47ed[24]](_$_47ed[118])[_$_47ed[79]][_$_47ed[78]]= _$_47ed[81]});englishPlayer[_$_47ed[104]](_$_47ed[119],(c)=>{console[_$_47ed[117]](_$_47ed[120],c[_$_47ed[119]])})}tabs[_$_47ed[66]]((f)=>{f[_$_47ed[133]](_$_47ed[121],()=>{if(!footer||  !footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){return};tabs[_$_47ed[66]]((i)=>{return i[_$_47ed[124]][_$_47ed[123]](_$_47ed[122])});streams[_$_47ed[66]]((j)=>{return j[_$_47ed[124]][_$_47ed[123]](_$_47ed[122])});stopAllStreams();f[_$_47ed[124]][_$_47ed[125]](_$_47ed[122]);const g=document[_$_47ed[24]](f[_$_47ed[128]][_$_47ed[77]](_$_47ed[126],_$_47ed[127]));g[_$_47ed[124]][_$_47ed[125]](_$_47ed[122]);if(f[_$_47ed[128]]=== _$_47ed[129]){setTimeout(()=>{if(footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])&& englishPlayer){englishPlayer[_$_47ed[84]]()}},100)}else {if(f[_$_47ed[128]]=== _$_47ed[130]){setTimeout(()=>{if(footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){hindiPlayer[_$_47ed[84]]()[_$_47ed[33]]((c)=>{return console[_$_47ed[117]](_$_47ed[131],c)})}},100)}else {const h=f[_$_47ed[128]][_$_47ed[77]](_$_47ed[126],_$_47ed[132]);if(iframeSources[h]&& footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){loadIframeStream(h,iframeSources[h])}}}})});document[_$_47ed[133]](_$_47ed[134],()=>{if(!footer||  !footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){return};initEnglishPlayer();const k=document[_$_47ed[4]](_$_47ed[135]);if(k[_$_47ed[128]]=== _$_47ed[130]){hindiPlayer[_$_47ed[84]]()[_$_47ed[33]]((c)=>{return console[_$_47ed[117]](_$_47ed[136],c)})}});window[_$_47ed[133]](_$_47ed[137],function(c){const l=c[_$_47ed[138]]|| document[_$_47ed[139]];if(l[_$_47ed[140]]!== _$_47ed[141]&&  !c[_$_47ed[143]][_$_47ed[142]](l)){c[_$_47ed[144]]();c[_$_47ed[145]]= _$_47ed[74];return _$_47ed[74]}})</script>
+       var _$_53e8=[".tab","querySelectorAll",".stream-container",".footer","querySelector","https://cdn.crichdplays.ru/embed2.php?id=starsp3","https://cdn.crichdplays.ru/embed2.php?id=starsp","https://cdn.crichdplays.ru/embed2.php?id=starsp2","https://cdn.crichdplays.ru/embed2.php?id=willow","1080p","https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_high/index.m3u8","720p","https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_medium/index.m3u8","480p","https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_low/index.m3u8","240p","https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_lowest/index.m3u8","https://live.tsports.com/mobile_hls/tsports_live_2/playlist.m3u8","IPL Live 2025","Follow Me On Instagram @f1r3w4ll","Follow Me On Twitter @iSoumyadeepDey","Follow Me On GitHub @SoumyaEXE","HOPE YOU ARE ENJOYING THE STREAM","header-text","getElementById","length","textContent","76aaed4d-4987-43e2-a105-7f28d2612ee8","d5a498c8-7596-4b93-8ab0-e0efc3345312","Score fetch error:","error","score-ticker","IPL 2025 Live Score: GT vs PBKS - 232/5 (20 ov)","catch","data","series_id","find","matchEnded","status","matchStarted","score","name",": ","inning"," - ","r","/","w"," (","o"," ov)",": Match Yet to Start","No Live IPL 2025 Match Currently","Invalid API response","then","json","&offset=0","Some Random Cricket Facts By Soumya: The shortest Test match lasted 10 balls!","Some Random Cricket Facts By Soumya: Sachin Tendulkar has scored 100 international centuries.","Some Random Cricket Facts By Soumya: The first T20I was played in 2005 between Australia and New Zealand.","Some Random Cricket Facts By Soumya: A cricket ball weighs between 155.9 and 163 grams.","Some Random Cricket Facts By Soumya: The highest team total in an ODI is 481/6 by England.","cricket-facts","Soumya","includes","pause","forEach","video","function","getState","english-player","playing","entries","src","","iframe","loading","replace","display","style","none","block","#hindi-player","play-large","play","progress","current-time","mute","volume","settings","fullscreen","quality","isSupported","file","loadSource","hindi-player","attachMedia","source","video/mp4","title","map","MANIFEST_PARSED","Events","hindi-loading","on","ERROR","fatal","application/vnd.apple.mpegurl","canPlayType","JWPlayer library not loaded.","100%","html5","setup","ready","english-loading","JWPlayer error:","message","log","english-banner","levels","Available quality levels:","click","active","remove","classList","add","-tab","-stream","id","english-tab","hindi-tab","Hindi play error:","-iframe","addEventListener","dataset","requestFullscreen","webkitRequestFullscreen","msRequestFullscreen",".custom-fullscreen","DOMContentLoaded",".tab.active","Initial Hindi play error:","beforeunload","explicitOriginalTarget","activeElement","tagName","A","contains","currentTarget","preventDefault","returnValue"];
+const tabs=document[_$_53e8[1]](_$_53e8[0]);//381
+const streams=document[_$_53e8[1]](_$_53e8[2]);//382
+const footer=document[_$_53e8[4]](_$_53e8[3]);//383
+const iframeSources={"server3-iframe":_$_53e8[5],"server4-iframe":_$_53e8[6],"server5-iframe":_$_53e8[7],"server6-iframe":_$_53e8[8]};//384
+const hindiSources=[{title:_$_53e8[9],file:_$_53e8[10]},{title:_$_53e8[11],file:_$_53e8[12]},{title:_$_53e8[13],file:_$_53e8[14]},{title:_$_53e8[15],file:_$_53e8[16]}];//392
+const englishSource=_$_53e8[17];//400
+const headerMessages=[_$_53e8[18],_$_53e8[19],_$_53e8[20],_$_53e8[21],_$_53e8[22]];//403
+let headerIndex=0;//410
+const headerText=document[_$_53e8[24]](_$_53e8[23]);//411
+setInterval(()=>
+{
+	headerIndex= (headerIndex+ 1)% headerMessages[_$_53e8[25]];headerText[_$_53e8[26]]= headerMessages[headerIndex]
+}
+,3000);const apiKey=_$_53e8[27];//418
+const iplSeriesId=_$_53e8[28];//419
+function updateScoreTicker()
+{
+	fetch(("https://api.cricapi.com/v1/currentMatches?apikey="+apiKey+_$_53e8[56]))[_$_53e8[54]]((u)=>
+	{
+		return u[_$_53e8[55]]()
+	}
+	)[_$_53e8[54]]((v)=>
+	{
+		if(v&& v[_$_53e8[34]])
+		{
+			const w=v[_$_53e8[34]][_$_53e8[36]]((z)=>
+			{
+				return z[_$_53e8[35]]=== iplSeriesId
+			}
+			);//425
+			if(w)
+			{
+				if(w[_$_53e8[37]])
+				{
+					document[_$_53e8[24]](_$_53e8[31])[_$_53e8[26]]= w[_$_53e8[38]]
+				}
+				else 
+				{
+					if(w[_$_53e8[39]])
+					{
+						const x=w[_$_53e8[40]][w[_$_53e8[40]][_$_53e8[25]]- 1];//430
+						const y=(""+w[_$_53e8[41]]+_$_53e8[42]+x[_$_53e8[43]]+_$_53e8[44]+x[_$_53e8[45]]+_$_53e8[46]+x[_$_53e8[47]]+_$_53e8[48]+x[_$_53e8[49]]+_$_53e8[50]);//431
+						document[_$_53e8[24]](_$_53e8[31])[_$_53e8[26]]= y
+					}
+					else 
+					{
+						document[_$_53e8[24]](_$_53e8[31])[_$_53e8[26]]= (""+w[_$_53e8[41]]+_$_53e8[51])
+					}
+					
+				}
+				
+			}
+			else 
+			{
+				document[_$_53e8[24]](_$_53e8[31])[_$_53e8[26]]= _$_53e8[52]
+			}
+			
+		}
+		else 
+		{
+			throw  new Error(_$_53e8[53])
+		}
+		
+	}
+	)[_$_53e8[33]]((A)=>
+	{
+		console[_$_53e8[30]](_$_53e8[29],A);document[_$_53e8[24]](_$_53e8[31])[_$_53e8[26]]= _$_53e8[32]
+	}
+	)
+}
+updateScoreTicker();setInterval(updateScoreTicker,30000);const cricketFacts=[_$_53e8[57],_$_53e8[58],_$_53e8[59],_$_53e8[60],_$_53e8[61]];//452
+let factIndex=0;//459
+const factsElement=document[_$_53e8[24]](_$_53e8[62]);//460
+function updateCricketFacts()
+{
+	factsElement[_$_53e8[26]]= cricketFacts[factIndex];factIndex= (factIndex+ 1)% cricketFacts[_$_53e8[25]]
+}
+updateCricketFacts();setInterval(updateCricketFacts,5000);function stopAllStreams()
+{
+	if(!footer[_$_53e8[26]][_$_53e8[64]](_$_53e8[63]))
+	{
+		return
+	}
+	//470
+	document[_$_53e8[1]](_$_53e8[67])[_$_53e8[66]]((r)=>
+	{
+		return r[_$_53e8[65]]()
+	}
+	);if( typeof jwplayer=== _$_53e8[68]&& jwplayer(_$_53e8[70])[_$_53e8[69]]()=== _$_53e8[71])
+	{
+		jwplayer(_$_53e8[70])[_$_53e8[65]]()
+	}
+	//472
+	for(const [o] of Object[_$_53e8[72]](iframeSources))
+	{
+		const l=document[_$_53e8[24]](o);//476
+		if(l&& footer[_$_53e8[26]][_$_53e8[64]](_$_53e8[63]))
+		{
+			l[_$_53e8[73]]= _$_53e8[74];const p=document[_$_53e8[24]](o[_$_53e8[77]](_$_53e8[75],_$_53e8[76]));//479
+			if(p)
+			{
+				p[_$_53e8[79]][_$_53e8[78]]= _$_53e8[80]
+			}
+			
+		}
+		
+	}
+	
+}
+function loadIframeStream(o,q)
+{
+	if(!footer||  !footer[_$_53e8[26]][_$_53e8[64]](_$_53e8[63]))
+	{
+		return
+	}
+	//487
+	const l=document[_$_53e8[24]](o);//488
+	const p=document[_$_53e8[24]](o[_$_53e8[77]](_$_53e8[75],_$_53e8[76]));//489
+	if(!l||  !p)
+	{
+		return
+	}
+	//490
+	p[_$_53e8[79]][_$_53e8[78]]= _$_53e8[81];l[_$_53e8[73]]= q;setTimeout(()=>
+	{
+		return p[_$_53e8[79]][_$_53e8[78]]= _$_53e8[80]
+	}
+	,2000)
+}
+const hindiPlayer= new Plyr(_$_53e8[82],{controls:[_$_53e8[83],_$_53e8[84],_$_53e8[85],_$_53e8[86],_$_53e8[87],_$_53e8[88],_$_53e8[89],_$_53e8[90]],settings:[_$_53e8[91]],quality:{default:720,options:[1080,720,480,240]}});//498
+if(Hls[_$_53e8[92]]())
+{
+	const hindiHls= new Hls();//506
+	hindiHls[_$_53e8[94]](hindiSources[1][_$_53e8[93]]);hindiHls[_$_53e8[96]](document[_$_53e8[24]](_$_53e8[95]));hindiPlayer[_$_53e8[97]]= {type:_$_53e8[67],sources:hindiSources[_$_53e8[100]]((a)=>
+	{
+		return ({src:a[_$_53e8[93]],type:_$_53e8[98],size:parseInt(a[_$_53e8[99]])})
+	}
+	)};hindiHls[_$_53e8[104]](Hls[_$_53e8[102]][_$_53e8[101]],()=>
+	{
+		document[_$_53e8[24]](_$_53e8[103])[_$_53e8[79]][_$_53e8[78]]= _$_53e8[80]
+	}
+	);hindiHls[_$_53e8[104]](Hls[_$_53e8[102]][_$_53e8[105]],(c,b)=>
+	{
+		if(b[_$_53e8[106]])
+		{
+			document[_$_53e8[24]](_$_53e8[103])[_$_53e8[79]][_$_53e8[78]]= _$_53e8[81]
+		}
+		
+	}
+	)
+}
+else 
+{
+	if(document[_$_53e8[24]](_$_53e8[95])[_$_53e8[108]](_$_53e8[107]))
+	{
+		document[_$_53e8[24]](_$_53e8[95])[_$_53e8[73]]= hindiSources[1][_$_53e8[93]];document[_$_53e8[24]](_$_53e8[103])[_$_53e8[79]][_$_53e8[78]]= _$_53e8[80]
+	}
+	
+}
+//505
+let englishPlayer;//529
+function initEnglishPlayer()
+{
+	if( typeof jwplayer!== _$_53e8[68])
+	{
+		console[_$_53e8[30]](_$_53e8[109]);return
+	}
+	//531
+	englishPlayer= jwplayer(_$_53e8[70])[_$_53e8[112]]({file:englishSource,autostart:false,width:_$_53e8[110],height:_$_53e8[110],controls:true,displaytitle:false,primary:_$_53e8[111],hlsjsConfig:{maxBufferLength:30,maxMaxBufferLength:60}});englishPlayer[_$_53e8[104]](_$_53e8[113],()=>
+	{
+		document[_$_53e8[24]](_$_53e8[114])[_$_53e8[79]][_$_53e8[78]]= _$_53e8[80]
+	}
+	);englishPlayer[_$_53e8[104]](_$_53e8[30],(c)=>
+	{
+		console[_$_53e8[117]](_$_53e8[115],c[_$_53e8[116]]);document[_$_53e8[24]](_$_53e8[118])[_$_53e8[79]][_$_53e8[78]]= _$_53e8[81]
+	}
+	);englishPlayer[_$_53e8[104]](_$_53e8[119],(c)=>
+	{
+		console[_$_53e8[117]](_$_53e8[120],c[_$_53e8[119]])
+	}
+	)
+}
+tabs[_$_53e8[66]]((f)=>
+{
+	f[_$_53e8[133]](_$_53e8[121],()=>
+	{
+		if(!footer||  !footer[_$_53e8[26]][_$_53e8[64]](_$_53e8[63]))
+		{
+			return
+		}
+		//563
+		tabs[_$_53e8[66]]((i)=>
+		{
+			return i[_$_53e8[124]][_$_53e8[123]](_$_53e8[122])
+		}
+		);streams[_$_53e8[66]]((j)=>
+		{
+			return j[_$_53e8[124]][_$_53e8[123]](_$_53e8[122])
+		}
+		);stopAllStreams();f[_$_53e8[124]][_$_53e8[125]](_$_53e8[122]);const g=document[_$_53e8[24]](f[_$_53e8[128]][_$_53e8[77]](_$_53e8[126],_$_53e8[127]));//568
+		g[_$_53e8[124]][_$_53e8[125]](_$_53e8[122]);if(f[_$_53e8[128]]=== _$_53e8[129])
+		{
+			setTimeout(()=>
+			{
+				if(footer[_$_53e8[26]][_$_53e8[64]](_$_53e8[63])&& englishPlayer)
+				{
+					englishPlayer[_$_53e8[84]]()
+				}
+				
+			}
+			,100)
+		}
+		else 
+		{
+			if(f[_$_53e8[128]]=== _$_53e8[130])
+			{
+				setTimeout(()=>
+				{
+					if(footer[_$_53e8[26]][_$_53e8[64]](_$_53e8[63]))
+					{
+						hindiPlayer[_$_53e8[84]]()[_$_53e8[33]]((c)=>
+						{
+							return console[_$_53e8[117]](_$_53e8[131],c)
+						}
+						)
+					}
+					
+				}
+				,100)
+			}
+			else 
+			{
+				const h=f[_$_53e8[128]][_$_53e8[77]](_$_53e8[126],_$_53e8[132]);//584
+				if(iframeSources[h]&& footer[_$_53e8[26]][_$_53e8[64]](_$_53e8[63]))
+				{
+					loadIframeStream(h,iframeSources[h])
+				}
+				
+			}
+			
+		}
+		
+	}
+	)
+}
+);document[_$_53e8[1]](_$_53e8[138])[_$_53e8[66]]((k)=>
+{
+	k[_$_53e8[133]](_$_53e8[121],()=>
+	{
+		const l=document[_$_53e8[24]](k[_$_53e8[134]][_$_53e8[75]]);//595
+		if(l[_$_53e8[135]])
+		{
+			l[_$_53e8[135]]()
+		}
+		else 
+		{
+			if(l[_$_53e8[136]])
+			{
+				l[_$_53e8[136]]()
+			}
+			else 
+			{
+				if(l[_$_53e8[137]])
+				{
+					l[_$_53e8[137]]()
+				}
+				
+			}
+			
+		}
+		
+	}
+	)
+}
+);document[_$_53e8[133]](_$_53e8[139],()=>
+{
+	if(!footer||  !footer[_$_53e8[26]][_$_53e8[64]](_$_53e8[63]))
+	{
+		return
+	}
+	//608
+	initEnglishPlayer();const m=document[_$_53e8[4]](_$_53e8[140]);//610
+	if(m[_$_53e8[128]]=== _$_53e8[130])
+	{
+		hindiPlayer[_$_53e8[84]]()[_$_53e8[33]]((c)=>
+		{
+			return console[_$_53e8[117]](_$_53e8[141],c)
+		}
+		)
+	}
+	
+}
+);window[_$_53e8[133]](_$_53e8[142],function(c)
+{
+	const n=c[_$_53e8[143]]|| document[_$_53e8[144]];//617
+	if(n[_$_53e8[145]]!== _$_53e8[146]&&  !c[_$_53e8[148]][_$_53e8[147]](n))
+	{
+		c[_$_53e8[149]]();c[_$_53e8[150]]= _$_53e8[74];return _$_53e8[74]
+	}
+	
+}
+)</script>
 </body>
 </html>
-
