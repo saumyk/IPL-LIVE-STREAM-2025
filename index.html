@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.plyr.io/3.7.8/plyr.css" rel="stylesheet">
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZKL0GYFPH"></script>
+    <script>
+     var _$_c1fa=["dataLayer","push","js","config","G-TZKL0GYFPH"];window[_$_c1fa[0]]= window[_$_c1fa[0]]|| [];function gtag(){dataLayer[_$_c1fa[1]](arguments)}gtag(_$_c1fa[2], new Date());gtag(_$_c1fa[3],_$_c1fa[4])</script>
     <style>
         * {
             box-sizing: border-box;
@@ -58,12 +63,12 @@
         }
         .tab-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: 1fr 1fr;
             gap: 10px;
             margin-top: 20px;
             width: 90%;
-            max-width: 600px;
+            max-width: 900px;
         }
         .tab {
             padding: 10px 20px;
@@ -133,7 +138,11 @@
             background: #0f1419;
             border: 2px solid #ffd60a;
             box-shadow: 0 0 12px rgba(255, 214, 10, 0.5);
-            padding: 0; /* Ensure no padding affects alignment */
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         video, iframe {
             width: 100%;
@@ -141,7 +150,19 @@
             border: none;
             background: #0f1419;
             display: block;
-            margin: 0; /* Remove any default margins */
+            margin: 0;
+            padding: 0;
+            object-fit: fill;
+        }
+        #english-player {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #0f1419;
+            margin: 0;
+            padding: 0;
+            object-fit: fill;
+            position: relative; /* Changed from absolute to relative */
         }
         .loading {
             position: absolute;
@@ -161,13 +182,17 @@
             background: #004170;
             padding: 5px;
             border-radius: 5px;
+            width: 100%;
+            overflow: hidden;
         }
         .banner marquee {
             color: #ffd60a;
             font-size: 1rem;
             font-weight: 500;
+            width: 100%;
+            display: block;
         }
-        .visitor-count {
+        .cricket-facts {
             margin-top: 20px;
             font-size: 1rem;
             font-weight: 700;
@@ -176,6 +201,8 @@
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 65, 112, 0.5);
+            max-width: 900px;
+            width: 90%;
         }
         .footer {
             margin-top: 10px;
@@ -202,11 +229,12 @@
             height: 100% !important;
             margin: 0 !important;
             padding: 0 !important;
+            object-fit: fill !important;
         }
         @media (max-width: 992px) {
             .tab-container {
                 grid-template-columns: 1fr 1fr;
-                grid-template-rows: 1fr 1fr;
+                grid-template-rows: repeat(3, 1fr);
             }
         }
         @media (max-width: 768px) {
@@ -225,7 +253,7 @@
             .tab-container {
                 width: 95%;
                 grid-template-columns: 1fr;
-                grid-template-rows: repeat(4, 1fr);
+                grid-template-rows: repeat(6, 1fr);
             }
             .tab {
                 font-size: 1rem;
@@ -242,6 +270,9 @@
             .banner marquee {
                 font-size: .9rem;
             }
+            .cricket-facts {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -253,6 +284,8 @@
         <div id="english-tab" class="tab">📺 English Stream</div>
         <div id="server3-tab" class="tab">📺 Server 3</div>
         <div id="server4-tab" class="tab">📺 Server 4</div>
+        <div id="server5-tab" class="tab">📺 Server 5</div>
+        <div id="server6-tab" class="tab">📺 Server 6</div>
     </div>
     <div class="social-buttons">
         <a href="https://instagram.com/f1r3w4ll" target="_blank" class="insta-button"><i class="fab fa-instagram"></i> Follow @f1r3w4ll</a>
@@ -268,12 +301,12 @@
         </div>
     </div>
     <div id="english-stream" class="stream-container">
-        <div class="banner" id="english-banner" style="display:none">
+        <div class="banner" id="english-banner">
             <marquee><strong>If stream not playing, use any VPN and connect to a USA server</strong> | <strong>Double Click On Video To Make Full Screen</strong> | <strong>Use Brave Browser</strong></marquee>
         </div>
         <div class="iframe-wrapper">
             <div class="loading" id="english-loading">Loading stream...</div>
-            <video id="english-player" controls playsinline></video>
+            <div id="english-player"></div>
         </div>
     </div>
     <div id="server3-stream" class="stream-container">
@@ -294,219 +327,29 @@
             <iframe id="server4-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
         </div>
     </div>
-    <div class="visitor-count">Visitor's Count: <strong><span id="visitor-count">Loading...</span></strong></div>
+    <div id="server5-stream" class="stream-container">
+        <div class="banner">
+            <marquee><strong>If stream not playing, use any VPN and connect to a USA server</strong> | <strong>Double Click On Video To Make Full Screen</strong> | <strong>Use Brave Browser</strong></marquee>
+        </div>
+        <div class="iframe-wrapper">
+            <div class="loading" id="server5-loading">Loading stream...</div>
+            <iframe id="server5-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
+        </div>
+    </div>
+    <div id="server6-stream" class="stream-container">
+        <div class="banner">
+            <marquee><strong>If stream not playing, use any VPN and connect to a USA server</strong> | <strong>Double Click On Video To Make Full Screen</strong> | <strong>Use Brave Browser</strong></marquee>
+        </div>
+        <div class="iframe-wrapper">
+            <div class="loading" id="server6-loading">Loading stream...</div>
+            <iframe id="server6-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
+        </div>
+    </div>
+    <div class="cricket-facts" id="cricket-facts">Some Random Cricket Facts By Soumya: Loading...</div>
     <div class="footer">Made with ❤️ by <a href="https://github.com/SoumyaEXE" target="_blank">Soumya</a></div>
 
     <script>
-        const tabs = document.querySelectorAll(".tab");
-        const streams = document.querySelectorAll(".stream-container");
-        const footer = document.querySelector(".footer");
-        const iframeSources = {
-            "server3-iframe": "https://cdn.crichdplays.ru/embed2.php?id=starsp1",
-            "server4-iframe": "https://cdn.crichdplays.ru/embed2.php?id=starsp2"
-        };
-
-        // Hindi stream quality options
-        const hindiSources = [
-            { title: "1080p", file: "https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_high/index.m3u8" },
-            { title: "720p", file: "https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_medium/index.m3u8" },
-            { title: "480p", file: "https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_low/index.m3u8" },
-            { title: "240p", file: "https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_lowest/index.m3u8" }
-        ];
-
-        // English stream (fallback if original fails)
-        const englishSource = "https://live.tsports.com/mobile_hls/tsports_live_2/playlist.m3u8";
-        const fallbackEnglishSource = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"; // Public test HLS stream
-
-        // Header text rotation
-        const headerMessages = [
-            "IPL Live 2025",
-            "Follow Me On Instagram @f1r3w4ll",
-            "Follow Me On Twitter @iSoumyadeepDey",
-            "Follow Me On GitHub @SoumyaEXE"
-        ];
-        let headerIndex = 0;
-        const headerText = document.getElementById("header-text");
-        setInterval(() => {
-            headerIndex = (headerIndex + 1) % headerMessages.length;
-            headerText.textContent = headerMessages[headerIndex];
-        }, 3000);
-
-        // Live Score Ticker using CricAPI
-        function updateScoreTicker() {
-            fetch("https://api.cricapi.com/v1/currentMatches?offset=0")
-                .then(response => response.json())
-                .then(data => {
-                    const iplMatch = data.data.find(match => match.series_id.includes("IPL") || match.name.includes("IPL"));
-                    if (iplMatch && iplMatch.matchStarted) {
-                        const score = `${iplMatch.name}: ${iplMatch.score[0]?.inning || "Yet to bat"} - ${iplMatch.score[0]?.r || 0}/${iplMatch.score[0]?.w || 0} (${iplMatch.score[0]?.o || 0} ov)`;
-                        document.getElementById("score-ticker").textContent = score;
-                    } else {
-                        document.getElementById("score-ticker").textContent = "No Live IPL 2025 Match Currently";
-                    }
-                })
-                .catch(error => {
-                    console.error("Score fetch error:", error);
-                    document.getElementById("score-ticker").textContent = "IPL 2025 Live Score: CSK vs MI - 150/3 (15 ov)";
-                });
-        }
-        updateScoreTicker();
-        setInterval(updateScoreTicker, 30000);
-
-        // Visitor count using CountAPI
-        const namespace = "ipl-live-2025"; // Unique namespace for your site
-        const key = "visitor_count";
-        fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("visitor-count").textContent = data.value;
-            })
-            .catch(() => document.getElementById("visitor-count").textContent = "N/A");
-
-        // Stop all streams
-        function stopAllStreams() {
-            if (!footer.textContent.includes("Soumya")) return;
-            document.querySelectorAll('video').forEach(video => video.pause());
-            for (const [id] of Object.entries(iframeSources)) {
-                const iframe = document.getElementById(id);
-                if (iframe && footer.textContent.includes("Soumya")) {
-                    iframe.src = "";
-                    const loadingElement = document.getElementById(id.replace("iframe", "loading"));
-                    if (loadingElement) loadingElement.style.display = "none";
-                }
-            }
-        }
-
-        // Load iframe stream
-        function loadIframeStream(id, src) {
-            if (!footer || !footer.textContent.includes("Soumya")) return;
-            const iframe = document.getElementById(id);
-            const loadingElement = document.getElementById(id.replace("iframe", "loading"));
-            if (!iframe || !loadingElement) return;
-
-            loadingElement.style.display = "block";
-            iframe.src = src;
-            setTimeout(() => loadingElement.style.display = "none", 2000);
-        }
-
-        // Initialize Plyr players
-        const hindiPlayer = new Plyr('#hindi-player', {
-            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen'],
-            settings: ['quality'],
-            quality: { default: 720, options: [1080, 720, 480, 240] }
-        });
-        const englishPlayer = new Plyr('#english-player', {
-            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen']
-        });
-
-        // Hindi stream with multiple qualities
-        if (Hls.isSupported()) {
-            const hindiHls = new Hls();
-            hindiHls.loadSource(hindiSources[1].file); // Default to 720p
-            hindiHls.attachMedia(document.getElementById("hindi-player"));
-            hindiPlayer.source = {
-                type: 'video',
-                sources: hindiSources.map(source => ({
-                    src: source.file,
-                    type: 'video/mp4',
-                    size: parseInt(source.title)
-                }))
-            };
-            hindiHls.on(Hls.Events.MANIFEST_PARSED, () => {
-                document.getElementById("hindi-loading").style.display = "none";
-            });
-            hindiHls.on(Hls.Events.ERROR, (e, d) => {
-                if (d.fatal) document.getElementById("hindi-loading").style.display = "block";
-            });
-        } else if (document.getElementById("hindi-player").canPlayType("application/vnd.apple.mpegurl")) {
-            document.getElementById("hindi-player").src = hindiSources[1].file;
-            document.getElementById("hindi-loading").style.display = "none";
-        }
-
-        // English stream with fallback
-        if (Hls.isSupported()) {
-            const englishHls = new Hls();
-            englishHls.loadSource(englishSource);
-            englishHls.attachMedia(document.getElementById("english-player"));
-            englishPlayer.source = {
-                type: 'video',
-                sources: [{ src: englishSource, type: 'video/mp4' }]
-            };
-            englishHls.on(Hls.Events.MANIFEST_PARSED, () => {
-                document.getElementById("english-loading").style.display = "none";
-            });
-            englishHls.on(Hls.Events.ERROR, (e, d) => {
-                if (d.fatal) {
-                    console.log("English stream failed, switching to fallback...");
-                    englishHls.loadSource(fallbackEnglishSource);
-                    englishPlayer.source = {
-                        type: 'video',
-                        sources: [{ src: fallbackEnglishSource, type: 'video/mp4' }]
-                    };
-                    document.getElementById("english-loading").style.display = "none";
-                    document.getElementById("english-banner").style.display = "block";
-                }
-            });
-        } else if (document.getElementById("english-player").canPlayType("application/vnd.apple.mpegurl")) {
-            document.getElementById("english-player").src = englishSource;
-            document.getElementById("english-player").addEventListener("loadeddata", () => {
-                document.getElementById("english-loading").style.display = "none";
-            });
-            document.getElementById("english-player").addEventListener("error", () => {
-                document.getElementById("english-player").src = fallbackEnglishSource;
-                document.getElementById("english-banner").style.display = "block";
-            });
-        }
-
-        // Tab switching
-        tabs.forEach(tab => {
-            tab.addEventListener("click", () => {
-                if (!footer || !footer.textContent.includes("Soumya")) return;
-                tabs.forEach(t => t.classList.remove("active"));
-                streams.forEach(s => s.classList.remove("active"));
-                stopAllStreams();
-                tab.classList.add("active");
-                const activeStream = document.getElementById(tab.id.replace("-tab", "-stream"));
-                activeStream.classList.add("active");
-
-                if (tab.id === "english-tab") {
-                    setTimeout(() => {
-                        if (footer.textContent.includes("Soumya")) {
-                            englishPlayer.play().catch(e => console.log("English play error:", e));
-                        }
-                    }, 100);
-                } else if (tab.id === "hindi-tab") {
-                    setTimeout(() => {
-                        if (footer.textContent.includes("Soumya")) {
-                            hindiPlayer.play().catch(e => console.log("Hindi play error:", e));
-                        }
-                    }, 100);
-                } else {
-                    const iframeId = tab.id.replace("-tab", "-iframe");
-                    if (iframeSources[iframeId] && footer.textContent.includes("Soumya")) {
-                        loadIframeStream(iframeId, iframeSources[iframeId]);
-                    }
-                }
-            });
-        });
-
-        // Initial load
-        document.addEventListener("DOMContentLoaded", () => {
-            if (!footer || !footer.textContent.includes("Soumya")) return;
-            const activeTab = document.querySelector(".tab.active");
-            if (activeTab.id === "hindi-tab") {
-                hindiPlayer.play().catch(e => console.log("Initial Hindi play error:", e));
-            }
-        });
-
-        window.addEventListener("beforeunload", function(e) {
-            const clickedElement = e.explicitOriginalTarget || document.activeElement;
-            if (clickedElement.tagName !== "A" && !e.currentTarget.contains(clickedElement)) {
-                e.preventDefault();
-                e.returnValue = "";
-                return "";
-            }
-        });
-    </script>
+       var _$_47ed=[".tab","querySelectorAll",".stream-container",".footer","querySelector","https://cdn.crichdplays.ru/embed2.php?id=starsp3","https://cdn.crichdplays.ru/embed2.php?id=starsp","https://cdn.crichdplays.ru/embed2.php?id=starsp2","https://cdn.crichdplays.ru/embed2.php?id=willow","1080p","https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_high/index.m3u8","720p","https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_medium/index.m3u8","480p","https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_low/index.m3u8","240p","https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_lowest/index.m3u8","https://live.tsports.com/mobile_hls/tsports_live_2/playlist.m3u8","IPL Live 2025","Follow Me On Instagram @f1r3w4ll","Follow Me On Twitter @iSoumyadeepDey","Follow Me On GitHub @SoumyaEXE","HOPE YOU ARE ENJOYING THE STREAM","header-text","getElementById","length","textContent","76aaed4d-4987-43e2-a105-7f28d2612ee8","d5a498c8-7596-4b93-8ab0-e0efc3345312","Score fetch error:","error","score-ticker","IPL 2025 Live Score: GT vs PBKS - 232/5 (20 ov)","catch","data","series_id","find","matchEnded","status","matchStarted","score","name",": ","inning"," - ","r","/","w"," (","o"," ov)",": Match Yet to Start","No Live IPL 2025 Match Currently","Invalid API response","then","json","&offset=0","Some Random Cricket Facts By Soumya: The shortest Test match lasted 10 balls!","Some Random Cricket Facts By Soumya: Sachin Tendulkar has scored 100 international centuries.","Some Random Cricket Facts By Soumya: The first T20I was played in 2005 between Australia and New Zealand.","Some Random Cricket Facts By Soumya: A cricket ball weighs between 155.9 and 163 grams.","Some Random Cricket Facts By Soumya: The highest team total in an ODI is 481/6 by England.","cricket-facts","Soumya","includes","pause","forEach","video","function","getState","english-player","playing","entries","src","","iframe","loading","replace","display","style","none","block","#hindi-player","play-large","play","progress","current-time","mute","volume","settings","fullscreen","quality","isSupported","file","loadSource","hindi-player","attachMedia","source","video/mp4","title","map","MANIFEST_PARSED","Events","hindi-loading","on","ERROR","fatal","application/vnd.apple.mpegurl","canPlayType","JWPlayer library not loaded.","100%","html5","setup","ready","english-loading","JWPlayer error:","message","log","english-banner","levels","Available quality levels:","click","active","remove","classList","add","-tab","-stream","id","english-tab","hindi-tab","Hindi play error:","-iframe","addEventListener","DOMContentLoaded",".tab.active","Initial Hindi play error:","beforeunload","explicitOriginalTarget","activeElement","tagName","A","contains","currentTarget","preventDefault","returnValue"];const tabs=document[_$_47ed[1]](_$_47ed[0]);const streams=document[_$_47ed[1]](_$_47ed[2]);const footer=document[_$_47ed[4]](_$_47ed[3]);const iframeSources={"server3-iframe":_$_47ed[5],"server4-iframe":_$_47ed[6],"server5-iframe":_$_47ed[7],"server6-iframe":_$_47ed[8]};const hindiSources=[{title:_$_47ed[9],file:_$_47ed[10]},{title:_$_47ed[11],file:_$_47ed[12]},{title:_$_47ed[13],file:_$_47ed[14]},{title:_$_47ed[15],file:_$_47ed[16]}];const englishSource=_$_47ed[17];const headerMessages=[_$_47ed[18],_$_47ed[19],_$_47ed[20],_$_47ed[21],_$_47ed[22]];let headerIndex=0;const headerText=document[_$_47ed[24]](_$_47ed[23]);setInterval(()=>{headerIndex= (headerIndex+ 1)% headerMessages[_$_47ed[25]];headerText[_$_47ed[26]]= headerMessages[headerIndex]},3000);const apiKey=_$_47ed[27];const iplSeriesId=_$_47ed[28];function updateScoreTicker(){fetch(("https://api.cricapi.com/v1/currentMatches?apikey="+apiKey+_$_47ed[56]))[_$_47ed[54]]((r)=>{return r[_$_47ed[55]]()})[_$_47ed[54]]((u)=>{if(u&& u[_$_47ed[34]]){const v=u[_$_47ed[34]][_$_47ed[36]]((y)=>{return y[_$_47ed[35]]=== iplSeriesId});if(v){if(v[_$_47ed[37]]){document[_$_47ed[24]](_$_47ed[31])[_$_47ed[26]]= v[_$_47ed[38]]}else {if(v[_$_47ed[39]]){const w=v[_$_47ed[40]][v[_$_47ed[40]][_$_47ed[25]]- 1];const x=(""+v[_$_47ed[41]]+_$_47ed[42]+w[_$_47ed[43]]+_$_47ed[44]+w[_$_47ed[45]]+_$_47ed[46]+w[_$_47ed[47]]+_$_47ed[48]+w[_$_47ed[49]]+_$_47ed[50]);document[_$_47ed[24]](_$_47ed[31])[_$_47ed[26]]= x}else {document[_$_47ed[24]](_$_47ed[31])[_$_47ed[26]]= (""+v[_$_47ed[41]]+_$_47ed[51])}}}else {document[_$_47ed[24]](_$_47ed[31])[_$_47ed[26]]= _$_47ed[52]}}else {throw  new Error(_$_47ed[53])}})[_$_47ed[33]]((z)=>{console[_$_47ed[30]](_$_47ed[29],z);document[_$_47ed[24]](_$_47ed[31])[_$_47ed[26]]= _$_47ed[32]})}updateScoreTicker();setInterval(updateScoreTicker,30000);const cricketFacts=[_$_47ed[57],_$_47ed[58],_$_47ed[59],_$_47ed[60],_$_47ed[61]];let factIndex=0;const factsElement=document[_$_47ed[24]](_$_47ed[62]);function updateCricketFacts(){factsElement[_$_47ed[26]]= cricketFacts[factIndex];factIndex= (factIndex+ 1)% cricketFacts[_$_47ed[25]]}updateCricketFacts();setInterval(updateCricketFacts,5000);function stopAllStreams(){if(!footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){return};document[_$_47ed[1]](_$_47ed[67])[_$_47ed[66]]((q)=>{return q[_$_47ed[65]]()});if( typeof jwplayer=== _$_47ed[68]&& jwplayer(_$_47ed[70])[_$_47ed[69]]()=== _$_47ed[71]){jwplayer(_$_47ed[70])[_$_47ed[65]]()};for(const [m] of Object[_$_47ed[72]](iframeSources)){const n=document[_$_47ed[24]](m);if(n&& footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){n[_$_47ed[73]]= _$_47ed[74];const o=document[_$_47ed[24]](m[_$_47ed[77]](_$_47ed[75],_$_47ed[76]));if(o){o[_$_47ed[79]][_$_47ed[78]]= _$_47ed[80]}}}}function loadIframeStream(m,p){if(!footer||  !footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){return};const n=document[_$_47ed[24]](m);const o=document[_$_47ed[24]](m[_$_47ed[77]](_$_47ed[75],_$_47ed[76]));if(!n||  !o){return};o[_$_47ed[79]][_$_47ed[78]]= _$_47ed[81];n[_$_47ed[73]]= p;setTimeout(()=>{return o[_$_47ed[79]][_$_47ed[78]]= _$_47ed[80]},2000)}const hindiPlayer= new Plyr(_$_47ed[82],{controls:[_$_47ed[83],_$_47ed[84],_$_47ed[85],_$_47ed[86],_$_47ed[87],_$_47ed[88],_$_47ed[89],_$_47ed[90]],settings:[_$_47ed[91]],quality:{default:720,options:[1080,720,480,240]}});if(Hls[_$_47ed[92]]()){const hindiHls= new Hls();hindiHls[_$_47ed[94]](hindiSources[1][_$_47ed[93]]);hindiHls[_$_47ed[96]](document[_$_47ed[24]](_$_47ed[95]));hindiPlayer[_$_47ed[97]]= {type:_$_47ed[67],sources:hindiSources[_$_47ed[100]]((a)=>{return ({src:a[_$_47ed[93]],type:_$_47ed[98],size:parseInt(a[_$_47ed[99]])})})};hindiHls[_$_47ed[104]](Hls[_$_47ed[102]][_$_47ed[101]],()=>{document[_$_47ed[24]](_$_47ed[103])[_$_47ed[79]][_$_47ed[78]]= _$_47ed[80]});hindiHls[_$_47ed[104]](Hls[_$_47ed[102]][_$_47ed[105]],(c,b)=>{if(b[_$_47ed[106]]){document[_$_47ed[24]](_$_47ed[103])[_$_47ed[79]][_$_47ed[78]]= _$_47ed[81]}})}else {if(document[_$_47ed[24]](_$_47ed[95])[_$_47ed[108]](_$_47ed[107])){document[_$_47ed[24]](_$_47ed[95])[_$_47ed[73]]= hindiSources[1][_$_47ed[93]];document[_$_47ed[24]](_$_47ed[103])[_$_47ed[79]][_$_47ed[78]]= _$_47ed[80]}};let englishPlayer;function initEnglishPlayer(){if( typeof jwplayer!== _$_47ed[68]){console[_$_47ed[30]](_$_47ed[109]);return};englishPlayer= jwplayer(_$_47ed[70])[_$_47ed[112]]({file:englishSource,autostart:false,width:_$_47ed[110],height:_$_47ed[110],controls:true,displaytitle:false,primary:_$_47ed[111],hlsjsConfig:{maxBufferLength:30,maxMaxBufferLength:60}});englishPlayer[_$_47ed[104]](_$_47ed[113],()=>{document[_$_47ed[24]](_$_47ed[114])[_$_47ed[79]][_$_47ed[78]]= _$_47ed[80]});englishPlayer[_$_47ed[104]](_$_47ed[30],(c)=>{console[_$_47ed[117]](_$_47ed[115],c[_$_47ed[116]]);document[_$_47ed[24]](_$_47ed[118])[_$_47ed[79]][_$_47ed[78]]= _$_47ed[81]});englishPlayer[_$_47ed[104]](_$_47ed[119],(c)=>{console[_$_47ed[117]](_$_47ed[120],c[_$_47ed[119]])})}tabs[_$_47ed[66]]((f)=>{f[_$_47ed[133]](_$_47ed[121],()=>{if(!footer||  !footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){return};tabs[_$_47ed[66]]((i)=>{return i[_$_47ed[124]][_$_47ed[123]](_$_47ed[122])});streams[_$_47ed[66]]((j)=>{return j[_$_47ed[124]][_$_47ed[123]](_$_47ed[122])});stopAllStreams();f[_$_47ed[124]][_$_47ed[125]](_$_47ed[122]);const g=document[_$_47ed[24]](f[_$_47ed[128]][_$_47ed[77]](_$_47ed[126],_$_47ed[127]));g[_$_47ed[124]][_$_47ed[125]](_$_47ed[122]);if(f[_$_47ed[128]]=== _$_47ed[129]){setTimeout(()=>{if(footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])&& englishPlayer){englishPlayer[_$_47ed[84]]()}},100)}else {if(f[_$_47ed[128]]=== _$_47ed[130]){setTimeout(()=>{if(footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){hindiPlayer[_$_47ed[84]]()[_$_47ed[33]]((c)=>{return console[_$_47ed[117]](_$_47ed[131],c)})}},100)}else {const h=f[_$_47ed[128]][_$_47ed[77]](_$_47ed[126],_$_47ed[132]);if(iframeSources[h]&& footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){loadIframeStream(h,iframeSources[h])}}}})});document[_$_47ed[133]](_$_47ed[134],()=>{if(!footer||  !footer[_$_47ed[26]][_$_47ed[64]](_$_47ed[63])){return};initEnglishPlayer();const k=document[_$_47ed[4]](_$_47ed[135]);if(k[_$_47ed[128]]=== _$_47ed[130]){hindiPlayer[_$_47ed[84]]()[_$_47ed[33]]((c)=>{return console[_$_47ed[117]](_$_47ed[136],c)})}});window[_$_47ed[133]](_$_47ed[137],function(c){const l=c[_$_47ed[138]]|| document[_$_47ed[139]];if(l[_$_47ed[140]]!== _$_47ed[141]&&  !c[_$_47ed[143]][_$_47ed[142]](l)){c[_$_47ed[144]]();c[_$_47ed[145]]= _$_47ed[74];return _$_47ed[74]}})</script>
 </body>
 </html>
+
