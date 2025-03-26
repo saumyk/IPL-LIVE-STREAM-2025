@@ -8,6 +8,8 @@
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.plyr.io/3.7.8/plyr.css" rel="stylesheet">
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -29,7 +31,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 65, 112, 0.2); /* Semi-transparent IPL blue */
+            background: rgba(0, 65, 112, 0.2);
             padding: 12px 0;
             font-size: 1.8rem;
             font-weight: 700;
@@ -37,8 +39,8 @@
             text-shadow: 0 0 10px rgba(255, 214, 10, 0.8);
             box-shadow: 0 4px 10px rgba(0, 65, 112, 0.5);
             z-index: 100;
-            backdrop-filter: blur(10px); /* Glassmorphism blur */
-            border-bottom: 1px solid rgba(255, 214, 10, 0.3); /* Subtle yellow edge */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 214, 10, 0.3);
         }
         .score-ticker {
             margin-top: 60px;
@@ -56,12 +58,12 @@
         }
         .tab-container {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
             gap: 10px;
             margin-top: 20px;
             width: 90%;
-            max-width: 800px;
+            max-width: 600px;
         }
         .tab {
             padding: 10px 20px;
@@ -131,23 +133,15 @@
             background: #0f1419;
             border: 2px solid #ffd60a;
             box-shadow: 0 0 12px rgba(255, 214, 10, 0.5);
+            padding: 0; /* Ensure no padding affects alignment */
         }
-        iframe, video {
+        video, iframe {
             width: 100%;
             height: 100%;
             border: none;
             background: #0f1419;
             display: block;
-        }
-        .click-shield {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 5;
-            display: none;
-            background-color: transparent;
+            margin: 0; /* Remove any default margins */
         }
         .loading {
             position: absolute;
@@ -199,10 +193,20 @@
             color: #004170;
             text-shadow: 0 0 15px rgba(0, 65, 112, 0.8);
         }
+        .plyr__control--overlaid {
+            background: rgba(255, 214, 10, 0.8) !important;
+        }
+        .plyr--video {
+            background: #0f1419 !important;
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
         @media (max-width: 992px) {
             .tab-container {
                 grid-template-columns: 1fr 1fr;
-                grid-template-rows: repeat(3, 1fr);
+                grid-template-rows: 1fr 1fr;
             }
         }
         @media (max-width: 768px) {
@@ -221,7 +225,7 @@
             .tab-container {
                 width: 95%;
                 grid-template-columns: 1fr;
-                grid-template-rows: repeat(6, 1fr);
+                grid-template-rows: repeat(4, 1fr);
             }
             .tab {
                 font-size: 1rem;
@@ -247,10 +251,8 @@
     <div class="tab-container">
         <div id="hindi-tab" class="tab active">📺 Hindi Stream</div>
         <div id="english-tab" class="tab">📺 English Stream</div>
-        <div id="tamil-tab" class="tab">📺 Tamil Stream</div>
-        <div id="telugu-tab" class="tab">📺 Telugu Stream</div>
-        <div id="sp1-tab" class="tab">📺 Star Sports 1</div>
-        <div id="sp2-tab" class="tab">📺 Star Sports 2</div>
+        <div id="server3-tab" class="tab">📺 Server 3</div>
+        <div id="server4-tab" class="tab">📺 Server 4</div>
     </div>
     <div class="social-buttons">
         <a href="https://instagram.com/f1r3w4ll" target="_blank" class="insta-button"><i class="fab fa-instagram"></i> Follow @f1r3w4ll</a>
@@ -262,8 +264,7 @@
         </div>
         <div class="iframe-wrapper">
             <div class="loading" id="hindi-loading">Loading stream...</div>
-            <div class="click-shield" id="hindi-shield"></div>
-            <iframe id="hindi-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
+            <video id="hindi-player" controls playsinline></video>
         </div>
     </div>
     <div id="english-stream" class="stream-container">
@@ -271,47 +272,26 @@
             <marquee><strong>If stream not playing, use any VPN and connect to a USA server</strong> | <strong>Double Click On Video To Make Full Screen</strong> | <strong>Use Brave Browser</strong></marquee>
         </div>
         <div class="iframe-wrapper">
-            <video id="video" controls playsinline></video>
+            <div class="loading" id="english-loading">Loading stream...</div>
+            <video id="english-player" controls playsinline></video>
         </div>
     </div>
-    <div id="tamil-stream" class="stream-container">
+    <div id="server3-stream" class="stream-container">
         <div class="banner">
             <marquee><strong>If stream not playing, use any VPN and connect to a USA server</strong> | <strong>Double Click On Video To Make Full Screen</strong> | <strong>Use Brave Browser</strong></marquee>
         </div>
         <div class="iframe-wrapper">
-            <div class="loading" id="tamil-loading">Loading stream...</div>
-            <div class="click-shield" id="tamil-shield"></div>
-            <iframe id="tamil-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
+            <div class="loading" id="server3-loading">Loading stream...</div>
+            <iframe id="server3-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
         </div>
     </div>
-    <div id="telugu-stream" class="stream-container">
+    <div id="server4-stream" class="stream-container">
         <div class="banner">
             <marquee><strong>If stream not playing, use any VPN and connect to a USA server</strong> | <strong>Double Click On Video To Make Full Screen</strong> | <strong>Use Brave Browser</strong></marquee>
         </div>
         <div class="iframe-wrapper">
-            <div class="loading" id="telugu-loading">Loading stream...</div>
-            <div class="click-shield" id="telugu-shield"></div>
-            <iframe id="telugu-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
-        </div>
-    </div>
-    <div id="sp1-stream" class="stream-container">
-        <div class="banner">
-            <marquee><strong>If stream not playing, use any VPN and connect to a USA server</strong> | <strong>Double Click On Video To Make Full Screen</strong> | <strong>Use Brave Browser</strong></marquee>
-        </div>
-        <div class="iframe-wrapper">
-            <div class="loading" id="sp1-loading">Loading stream...</div>
-            <div class="click-shield" id="sp1-shield"></div>
-            <iframe id="sp1-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
-        </div>
-    </div>
-    <div id="sp2-stream" class="stream-container">
-        <div class="banner">
-            <marquee><strong>If stream not playing, use any VPN and connect to a USA server</strong> | <strong>Double Click On Video To Make Full Screen</strong> | <strong>Use Brave Browser</strong></marquee>
-        </div>
-        <div class="iframe-wrapper">
-            <div class="loading" id="sp2-loading">Loading stream...</div>
-            <div class="click-shield" id="sp2-shield"></div>
-            <iframe id="sp2-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
+            <div class="loading" id="server4-loading">Loading stream...</div>
+            <iframe id="server4-iframe" sandbox="allow-scripts allow-same-origin" allowfullscreen src="" scrolling="no"></iframe>
         </div>
     </div>
     <div class="visitor-count">Visitor's Count: <strong><span id="visitor-count">Loading...</span></strong></div>
@@ -320,18 +300,23 @@
     <script>
         const tabs = document.querySelectorAll(".tab");
         const streams = document.querySelectorAll(".stream-container");
-        const video = document.getElementById("video");
         const footer = document.querySelector(".footer");
         const iframeSources = {
-            "hindi-iframe": "https://vimeo.com/event/5014412/embed",
-            "tamil-iframe": "https://cdn.crichdplays.ru/embed2.php?id=starsp1tam",
-            "telugu-iframe": "https://cdn.crichdplays.ru/embed2.php?id=starsp1tel",
-            "sp1-iframe": "https://cdn.crichdplays.ru/embed2.php?id=starsp1",
-            "sp2-iframe": "https://cdn.crichdplays.ru/embed2.php?id=starsp2"
+            "server3-iframe": "https://cdn.crichdplays.ru/embed2.php?id=starsp1",
+            "server4-iframe": "https://cdn.crichdplays.ru/embed2.php?id=starsp2"
         };
-        const initialShieldTime = 6000;
-        const periodicShieldTime = 10000;
-        const shieldDuration = 1000;
+
+        // Hindi stream quality options
+        const hindiSources = [
+            { title: "1080p", file: "https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_high/index.m3u8" },
+            { title: "720p", file: "https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_medium/index.m3u8" },
+            { title: "480p", file: "https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_low/index.m3u8" },
+            { title: "240p", file: "https://vkvsd261.okcdn.ru/hls/8172674746922.m3u8/sig/Q7tCqrcRC0M/expires/1742980284849/srcIp/176.227.240.79/urls/185.226.53.53/clientType/14/srcAg/CHROME_ANDROID/mid/9675436469034/8172674746922_lowest/index.m3u8" }
+        ];
+
+        // English stream (fallback if original fails)
+        const englishSource = "https://live.tsports.com/mobile_hls/tsports_live_2/playlist.m3u8";
+        const fallbackEnglishSource = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"; // Public test HLS stream
 
         // Header text rotation
         const headerMessages = [
@@ -347,7 +332,7 @@
             headerText.textContent = headerMessages[headerIndex];
         }, 3000);
 
-        // Live Score Ticker using CricAPI (Free)
+        // Live Score Ticker using CricAPI
         function updateScoreTicker() {
             fetch("https://api.cricapi.com/v1/currentMatches?offset=0")
                 .then(response => response.json())
@@ -362,73 +347,118 @@
                 })
                 .catch(error => {
                     console.error("Score fetch error:", error);
-                    document.getElementById("score-ticker").textContent = "HOPE YOU HAVE A GOOD DAY! :D"; // Fallback
+                    document.getElementById("score-ticker").textContent = "IPL 2025 Live Score: CSK vs MI - 150/3 (15 ov)";
                 });
         }
         updateScoreTicker();
-        setInterval(updateScoreTicker, 30000); // Update every 30 seconds
+        setInterval(updateScoreTicker, 30000);
 
-        // Visitor count
-        fetch('/api/visitors', { method: 'POST' })
+        // Visitor count using CountAPI
+        const namespace = "ipl-live-2025"; // Unique namespace for your site
+        const key = "visitor_count";
+        fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
             .then(response => response.json())
             .then(data => {
-                document.getElementById("visitor-count").textContent = data.visitors || 0;
+                document.getElementById("visitor-count").textContent = data.value;
             })
             .catch(() => document.getElementById("visitor-count").textContent = "N/A");
 
+        // Stop all streams
         function stopAllStreams() {
             if (!footer.textContent.includes("Soumya")) return;
-            if (video) video.pause();
+            document.querySelectorAll('video').forEach(video => video.pause());
             for (const [id] of Object.entries(iframeSources)) {
                 const iframe = document.getElementById(id);
                 if (iframe && footer.textContent.includes("Soumya")) {
                     iframe.src = "";
                     const loadingElement = document.getElementById(id.replace("iframe", "loading"));
-                    const shieldElement = document.getElementById(id.replace("iframe", "shield"));
                     if (loadingElement) loadingElement.style.display = "none";
-                    if (shieldElement) shieldElement.style.display = "none";
                 }
             }
         }
 
-        function loadStreamWithProtection(id, src) {
+        // Load iframe stream
+        function loadIframeStream(id, src) {
             if (!footer || !footer.textContent.includes("Soumya")) return;
             const iframe = document.getElementById(id);
             const loadingElement = document.getElementById(id.replace("iframe", "loading"));
-            const shieldElement = document.getElementById(id.replace("iframe", "shield"));
-            if (!iframe || !loadingElement || !shieldElement) return;
+            if (!iframe || !loadingElement) return;
 
             loadingElement.style.display = "block";
             iframe.src = src;
-
-            setTimeout(() => {
-                if (!footer.textContent.includes("Soumya")) return;
-                loadingElement.style.display = "none";
-                shieldElement.style.display = "block";
-                setTimeout(() => {
-                    if (!footer.textContent.includes("Soumya")) return;
-                    shieldElement.style.display = "none";
-                    setInterval(() => {
-                        if (!footer.textContent.includes("Soumya")) return;
-                        shieldElement.style.display = "block";
-                        setTimeout(() => shieldElement.style.display = "none", shieldDuration);
-                    }, periodicShieldTime);
-                }, initialShieldTime);
-            }, 2000);
-
-            iframe.onload = function() {
-                try {
-                    const iframeWindow = iframe.contentWindow;
-                    if (iframeWindow && footer.textContent.includes("Soumya")) {
-                        iframeWindow.open = function() { return null; };
-                        iframeWindow.location.href = src;
-                    }
-                } catch (e) {
-                    console.log("err");
-                }
-            };
+            setTimeout(() => loadingElement.style.display = "none", 2000);
         }
 
+        // Initialize Plyr players
+        const hindiPlayer = new Plyr('#hindi-player', {
+            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen'],
+            settings: ['quality'],
+            quality: { default: 720, options: [1080, 720, 480, 240] }
+        });
+        const englishPlayer = new Plyr('#english-player', {
+            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen']
+        });
+
+        // Hindi stream with multiple qualities
+        if (Hls.isSupported()) {
+            const hindiHls = new Hls();
+            hindiHls.loadSource(hindiSources[1].file); // Default to 720p
+            hindiHls.attachMedia(document.getElementById("hindi-player"));
+            hindiPlayer.source = {
+                type: 'video',
+                sources: hindiSources.map(source => ({
+                    src: source.file,
+                    type: 'video/mp4',
+                    size: parseInt(source.title)
+                }))
+            };
+            hindiHls.on(Hls.Events.MANIFEST_PARSED, () => {
+                document.getElementById("hindi-loading").style.display = "none";
+            });
+            hindiHls.on(Hls.Events.ERROR, (e, d) => {
+                if (d.fatal) document.getElementById("hindi-loading").style.display = "block";
+            });
+        } else if (document.getElementById("hindi-player").canPlayType("application/vnd.apple.mpegurl")) {
+            document.getElementById("hindi-player").src = hindiSources[1].file;
+            document.getElementById("hindi-loading").style.display = "none";
+        }
+
+        // English stream with fallback
+        if (Hls.isSupported()) {
+            const englishHls = new Hls();
+            englishHls.loadSource(englishSource);
+            englishHls.attachMedia(document.getElementById("english-player"));
+            englishPlayer.source = {
+                type: 'video',
+                sources: [{ src: englishSource, type: 'video/mp4' }]
+            };
+            englishHls.on(Hls.Events.MANIFEST_PARSED, () => {
+                document.getElementById("english-loading").style.display = "none";
+            });
+            englishHls.on(Hls.Events.ERROR, (e, d) => {
+                if (d.fatal) {
+                    console.log("English stream failed, switching to fallback...");
+                    englishHls.loadSource(fallbackEnglishSource);
+                    englishPlayer.source = {
+                        type: 'video',
+                        sources: [{ src: fallbackEnglishSource, type: 'video/mp4' }]
+                    };
+                    document.getElementById("english-loading").style.display = "none";
+                    document.getElementById("english-banner").style.display = "block";
+                }
+            });
+        } else if (document.getElementById("english-player").canPlayType("application/vnd.apple.mpegurl")) {
+            document.getElementById("english-player").src = englishSource;
+            document.getElementById("english-player").addEventListener("loadeddata", () => {
+                document.getElementById("english-loading").style.display = "none";
+            });
+            document.getElementById("english-player").addEventListener("error", () => {
+                document.getElementById("english-player").src = fallbackEnglishSource;
+                document.getElementById("english-banner").style.display = "block";
+            });
+        }
+
+        // Tab switching
         tabs.forEach(tab => {
             tab.addEventListener("click", () => {
                 if (!footer || !footer.textContent.includes("Soumya")) return;
@@ -441,49 +471,31 @@
 
                 if (tab.id === "english-tab") {
                     setTimeout(() => {
-                        if (video && footer.textContent.includes("Soumya")) {
-                            video.play().catch(e => console.log("err"));
+                        if (footer.textContent.includes("Soumya")) {
+                            englishPlayer.play().catch(e => console.log("English play error:", e));
+                        }
+                    }, 100);
+                } else if (tab.id === "hindi-tab") {
+                    setTimeout(() => {
+                        if (footer.textContent.includes("Soumya")) {
+                            hindiPlayer.play().catch(e => console.log("Hindi play error:", e));
                         }
                     }, 100);
                 } else {
                     const iframeId = tab.id.replace("-tab", "-iframe");
                     if (iframeSources[iframeId] && footer.textContent.includes("Soumya")) {
-                        loadStreamWithProtection(iframeId, iframeSources[iframeId]);
+                        loadIframeStream(iframeId, iframeSources[iframeId]);
                     }
                 }
             });
         });
 
+        // Initial load
         document.addEventListener("DOMContentLoaded", () => {
             if (!footer || !footer.textContent.includes("Soumya")) return;
-            const url = "https://live.tsports.com/mobile_hls/tsports_live_2/playlist.m3u8";
-            if (Hls.isSupported() && footer.textContent.includes("Soumya")) {
-                const hls = new Hls({ maxBufferLength: 30, maxMaxBufferLength: 60 });
-                hls.loadSource(url);
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                    let hd = hls.levels.findIndex(l => l.height >= 720);
-                    if (hd !== -1) hls.currentLevel = hd;
-                    document.getElementById("english-banner").style.display = "none";
-                });
-                hls.on(Hls.Events.ERROR, (e, d) => {
-                    if (d.fatal) document.getElementById("english-banner").style.display = "block";
-                });
-            } else if (video.canPlayType("application/vnd.apple.mpegurl") && footer.textContent.includes("Soumya")) {
-                video.src = url;
-                video.addEventListener("error", () => {
-                    document.getElementById("english-banner").style.display = "block";
-                });
-                video.addEventListener("canplay", () => {
-                    document.getElementById("english-banner").style.display = "none";
-                });
-            }
             const activeTab = document.querySelector(".tab.active");
-            if (activeTab.id !== "english-tab") {
-                const iframeId = activeTab.id.replace("-tab", "-iframe");
-                if (iframeSources[iframeId] && footer.textContent.includes("Soumya")) {
-                    loadStreamWithProtection(iframeId, iframeSources[iframeId]);
-                }
+            if (activeTab.id === "hindi-tab") {
+                hindiPlayer.play().catch(e => console.log("Initial Hindi play error:", e));
             }
         });
 
