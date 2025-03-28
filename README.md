@@ -2,6 +2,8 @@
 
 Welcome to **IPLify**, your one-stop solution for **IPL live streaming** and real-time updates! Access **live IPL links** and enjoy cricket action seamlessly. Built for fans who want quick, reliable access to **IPL live matches** directly from GitHub.
 
+# GIVE A STAR AND FOLLOW FOR CLEAN VERSION OF THE CODE! ✔️❤️
+
 ## Features
 - **Live IPL Streaming**: Watch IPL matches in real-time with high-quality links.
 - **Simple Interface**: Easy-to-use design for all cricket enthusiasts.
