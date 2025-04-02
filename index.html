@@ -58,10 +58,10 @@
         <div class="tab" onclick="switchStream('server2')">📺 Server 2</div>
     </div>
     <div id="server1" class="stream-container active">
-        <iframe src="https://www.example.com/stream1"></iframe>
+        <iframe id="server1-iframe" sandbox="allow-scripts allow-same-origin allow-fullscreen allow-presentation" allowfullscreen src="" scrolling="no"></iframe>
     </div>
     <div id="server2" class="stream-container">
-        <iframe src="https://www.example.com/stream2"></iframe>
+        <iframe id="server2-iframe" sandbox="allow-scripts allow-same-origin allow-fullscreen allow-presentation" allowfullscreen src="" scrolling="no"></iframe>
     </div>
     <script>
         function switchStream(server) {
